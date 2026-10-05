@@ -1,0 +1,16 @@
+tasks.register('buildAll') {
+	group = 'build'
+	description = 'Test the shared core, check the bridge, and build the 26.3 and 1.21.11 client jars.'
+	dependsOn 'bridgeCheck', ':shared:test', ':fabric-26:build', ':fabric-121:build'
+}
+
+tasks.register('bridgeCheck', Exec) {
+	group = 'verification'
+	description = 'Lint and test the local bridge without opening WhatsApp.'
+	workingDir = file('bridge')
+	if (System.getProperty('os.name').toLowerCase(java.util.Locale.ROOT).contains('windows')) {
+		commandLine 'cmd', '/c', 'npm', 'run', 'check'
+	} else {
+		commandLine 'npm', 'run', 'check'
+	}
+}

@@ -1,0 +1,25 @@
+{
+	"schemaVersion": 1,
+	"id": "whatsappchat",
+	"version": "${version}",
+	"name": "WhatsappMC",
+	"description": "Lite mode is one private WhatsApp chat. Full mode shares a world's chat with one WhatsApp group. Open Esc, Mods, WhatsappMC.",
+	"authors": ["WhatsApp Chat"],
+	"license": "MIT",
+	"icon": "assets/whatsappchat/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"client": ["dev.whatsappmc.client.WhatsAppClient"],
+		"server": ["dev.whatsappmc.server.WhatsAppServer"],
+		"modmenu": ["dev.whatsappmc.client.ModMenuIntegration"]
+	},
+	"depends": {
+		"fabricloader": ">=0.19.5",
+		"minecraft": "~26.3",
+		"java": ">=25",
+		"fabric-api": "*"
+	},
+	"suggests": {
+		"modmenu": "*"
+	}
+}

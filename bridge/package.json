@@ -1,0 +1,31 @@
+{
+  "name": "whatsapp-mc-bridge",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "start": "npm run build && node dist/index.js",
+    "test": "npm run build && node --test dist/bridge.test.js dist/server.test.js",
+    "lint": "eslint src",
+    "check": "npm run lint && npm test"
+  },
+  "dependencies": {
+    "@whiskeysockets/baileys": "^7.0.0-rc14",
+    "pino": "^10.4.0",
+    "qrcode-terminal": "^0.12.0",
+    "ws": "^8.22.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@types/node": "^26.6.4",
+    "@types/qrcode-terminal": "^0.12.2",
+    "@types/ws": "^8.18.2",
+    "eslint": "^10.12.0",
+    "typescript": "^6.0.3",
+    "typescript-eslint": "^8.71.0"
+  }
+}

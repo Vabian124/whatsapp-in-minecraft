@@ -1,0 +1,20 @@
+.gradle/
+build/
+run/
+out/
+.research/
+*.log
+.idea/
+.vscode/
+*.iml
+.classpath
+.project
+.settings/
+
+bridge/node_modules/
+bridge/dist/
+
+# Local WhatsApp session and secrets live outside the repo, but ignore copies too.
+**/auth/
+**/config.json
+!bridge/config.example.json

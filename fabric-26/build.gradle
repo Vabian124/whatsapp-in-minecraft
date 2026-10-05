@@ -1,0 +1,67 @@
+plugins {
+	id 'net.fabricmc.fabric-loom' version '1.18-SNAPSHOT'
+}
+
+version = '1.0.0+26.3'
+group = 'dev.whatsappmc'
+
+base {
+	archivesName = 'whatsappchat'
+}
+
+repositories {
+	maven {
+		name = 'TerraformersMC'
+		url = 'https://maven.terraformersmc.com/releases/'
+	}
+}
+
+loom {
+	splitEnvironmentSourceSets()
+	mods {
+		whatsappchat {
+			sourceSet sourceSets.main
+			sourceSet sourceSets.client
+		}
+	}
+}
+
+dependencies {
+	minecraft 'com.mojang:minecraft:26.3'
+	implementation 'net.fabricmc:fabric-loader:0.19.5'
+	implementation 'net.fabricmc.fabric-api:fabric-api:0.161.0+26.3'
+	compileOnly 'com.terraformersmc:modmenu:21.0.0'
+}
+
+sourceSets {
+	main {
+		java {
+			srcDir layout.projectDirectory.dir('../shared/src/main/java')
+			srcDir layout.projectDirectory.dir('../server-common/java')
+		}
+	}
+	client {
+		java {
+			srcDir layout.projectDirectory.dir('../client-common/java')
+		}
+	}
+}
+
+processResources {
+	def version = project.version
+	inputs.property 'version', version
+	filesMatching('fabric.mod.json') {
+		expand 'version': version
+	}
+}
+
+tasks.withType(JavaCompile).configureEach {
+	options.release = 25
+	options.encoding = 'UTF-8'
+}
+
+java {
+	sourceCompatibility = JavaVersion.VERSION_25
+	targetCompatibility = JavaVersion.VERSION_25
+	withSourcesJar()
+}
